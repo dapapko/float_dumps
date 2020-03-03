@@ -3,33 +3,30 @@
 using namespace std;
 
 
-void dumper(vector<char>* dump, unsigned short int value, int base) {
-    short int mask = 0xf;
-    if(base == 2) mask >>=3;
-    int base_shift = 4;
-    if(base == 2) base_shift = 1;
+void dumper(vector<char>* dump, unsigned short int value) {
+    short int mask = 1;
+    int base_shift = 1;
     int correction_shift = 0;
-    int upperbound = 4;
-    if(base == 2) upperbound = 16;
-    for(int i =0; i < upperbound; i++) {
+    int upperbound = 16;
+    for(int i = 0; i < upperbound; i++) {
         int digit = (value & mask) >> correction_shift;
         mask <<= base_shift;
         correction_shift += base_shift;
-        char dig = (digit > 9 ? char(digit + 87) : char(digit + 48));
+        char dig = (digit == 0  ? '0' : '1');
         dump->insert(dump->begin(), dig);
     }
 }
 
 
 template <typename T>
-vector<char> fdumper(T value, int base) {
+vector<char> fdumper(T value) {
     vector<char> dump = vector<char>();
     int iterations;
     sizeof(T) == 4 ? iterations = 2 : iterations = 4;
     T* pValue = &value;
     auto* p = reinterpret_cast<unsigned short int*>(pValue);
     for(int i=0; i < iterations;i++)
-        dumper(&dump, p[i], base);
+        dumper(&dump, p[i]);
     return dump;
 }
 
@@ -65,7 +62,7 @@ T bin_to_number(vector<char> dump) {
 
 int main() {
     double f = 12.34;
-    std::vector<char> dump = fdumper(f, 2);
+    std::vector<char> dump = fdumper(f);
     cout << endl;
     get_inner_representation(dump);
     double a = bin_to_number<double>(dump);
