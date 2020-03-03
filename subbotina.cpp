@@ -49,6 +49,8 @@ void print_fields(vector<char> dump) {
 
 template<typename T>
 T bin_to_number(vector<char> dump) {
+     if(sizeof(T)*8 != dump.size())
+        throw std::out_of_range("Invalid size of dump");
     unsigned long long int digit, val;
     val = 0;
     int cs = dump.size() - 1;
