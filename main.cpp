@@ -1,11 +1,7 @@
-//Task 1: from  binary string to float or double
-// Task 2: from float or double to octal/hex/bin string
-
 #include <iostream>
 #include <vector>
-#include <bitset>
-
 using namespace std;
+
 
 void dumper(vector<char>* dump, unsigned short int value, int base) {
     short int mask = 0xf;
@@ -24,6 +20,7 @@ void dumper(vector<char>* dump, unsigned short int value, int base) {
     }
 }
 
+
 template <typename T>
 vector<char> fdumper(T value, int base) {
     vector<char> dump = vector<char>();
@@ -36,27 +33,18 @@ vector<char> fdumper(T value, int base) {
     return dump;
 }
 
-template <typename T>
-void get_inner_representation(T value) {
-    int firstbound, secondbound, sign_index;
-    T* pValue = &value;
-    auto* p = reinterpret_cast<long long int*>(pValue);
-    bitset<64> dump = bitset<64>(*p);
-    if(sizeof(T) == 8) {
-        firstbound = 51;
-        secondbound = 62;
-        sign_index = 63;
-    } else if (sizeof(T) == 4) {
-        firstbound = 22;
-        secondbound = 30;
-        sign_index = 31;
-    }
-    cout << dump[sign_index] << ' ';
-    for(int i = secondbound; i >firstbound ; i--)
-        cout << dump[i];
+
+void get_inner_representation(vector<char> dump) {
+    int lenexp;
+    dump.size() == 64 ? lenexp = 11 : lenexp = 8 ;
+    auto it1 = next(dump.begin() + 1, lenexp);
+    auto begin = dump.begin() + 1;
+    cout << dump.back() << ' ';
+    for(begin; begin < it1 ; begin++)
+        cout << *begin;
     cout << ' ';
-    for(int i = firstbound; i > 0; i--)
-        cout << dump[i];
+    for(auto a = begin; a <= dump.end() ; a++)
+        cout << *a;
 }
 
 
@@ -76,9 +64,10 @@ T bin_to_number(vector<char> dump) {
 
 
 int main() {
-    float f = 12.34;
+    double f = 12.34;
     std::vector<char> dump = fdumper(f, 2);
-    get_inner_representation(f);
-    float a = bin_to_number<float>(dump);
+    cout << endl;
+    get_inner_representation(dump);
+    double a = bin_to_number<double>(dump);
     cout << endl << a;
 }
