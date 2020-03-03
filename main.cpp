@@ -4,7 +4,7 @@ using namespace std;
 
 
 void dumper(vector<char>* dump, unsigned short int value) {
-    short int mask = 1;
+    unsigned short int mask = 1;
     int base_shift = 1;
     int correction_shift = 0;
     int upperbound = 16;
