@@ -38,7 +38,7 @@ void print_fields(vector<char> dump) {
     dump.size() == 64 ? lenexp = 11 : lenexp = 8 ;
     auto it1 = next(dump.begin() + 1, lenexp);
     auto begin = dump.begin() + 1;
-    cout << dump.back() << ' ';
+    cout << dump.front() << ' ';
     for(begin; begin < it1 ; begin++)
         cout << *begin;
     cout << ' ';
