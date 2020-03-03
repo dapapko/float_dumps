@@ -34,14 +34,14 @@ vector<char> fdumper(T value) {
 void get_inner_representation(vector<char> dump) {
     int lenexp;
     dump.size() == 64 ? lenexp = 11 : lenexp = 8 ;
-    auto it1 = next(dump.begin() + 1, lenexp);
-    auto begin = dump.begin() + 1;
+    auto exp_end = next(dump.begin() + 1, lenexp);
+    auto curpos = dump.begin() + 1;
     cout << dump.back() << ' ';
-    for(begin; begin < it1 ; begin++)
-        cout << *begin;
+    for(curpos; curpos < exp_end ; curpos++)
+        cout << *curpos;
     cout << ' ';
-    for(auto a = begin; a <= dump.end() ; a++)
-        cout << *a;
+    for(curpos; curpos <= dump.end() ; curpos++)
+        cout << *curpos;
 }
 
 
