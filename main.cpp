@@ -36,7 +36,7 @@ void get_inner_representation(vector<char> dump) {
     dump.size() == 64 ? lenexp = 11 : lenexp = 8 ;
     auto exp_end = next(dump.begin() + 1, lenexp);
     auto curpos = dump.begin() + 1;
-    cout << dump.back() << ' ';
+    cout << dump.front() << ' ';
     for(curpos; curpos < exp_end ; curpos++)
         cout << *curpos;
     cout << ' ';
@@ -63,6 +63,8 @@ T bin_to_number(vector<char> dump) {
 int main() {
     double f = 12.34;
     std::vector<char> dump = fdumper(f);
+    for(char c: dump)
+        cout << c;
     cout << endl;
     get_inner_representation(dump);
     double a = bin_to_number<double>(dump);
