@@ -61,14 +61,13 @@ T bin_to_number(vector<char> dump) {
     return rvalue;
 }
 
-
 int main() {
-    double f = 12.34;
+    float f = 12.34;
     std::vector<char> dump = fdumper(f);
-    for(char c: dump)
-        cout << c;
     cout << endl;
     get_inner_representation(dump);
-    double a = bin_to_number<double>(dump);
+    float a = bin_to_number<float>(dump);
     cout << endl << a;
 }
+
+
