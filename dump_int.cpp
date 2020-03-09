@@ -48,8 +48,7 @@ template<typename T>
 T bin_to_number(vector<int> dump) {
     if(sizeof(T)*8 != dump.size())
         throw std::out_of_range("Invalid size of dump");
-    unsigned long long int val;
-    val = 0;
+    unsigned long long int val = 0;
     int correction_shift = dump.size() - 1;
     for(unsigned long long int digit: dump) {
         val |= (digit << correction_shift);
