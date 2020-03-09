@@ -39,7 +39,7 @@ void get_inner_representation(vector<int> dump) {
     for(curpos; curpos < exp_end ; curpos++)
         cout << *curpos;
     cout << ' ';
-    for(curpos; curpos <= dump.end() ; curpos++)
+    for(curpos; curpos < dump.end() ; curpos++)
         cout << *curpos;
 }
 
