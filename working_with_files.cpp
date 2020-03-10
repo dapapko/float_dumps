@@ -24,7 +24,7 @@ vector<int> dumper(T a) {
 
 
 
-void writeTo(vector<int>* content) {
+void write_to(vector<int>* content) {
     ofstream target;
     target.open("dump.txt");
     for(int digit: *content)
@@ -44,13 +44,13 @@ string read_and_print() {
 
 
 int main() {
-    float f = -44.69;
-    vector<int> dump = dumper<float>(f);
+    double f = -44.69;
+    vector<int> dump = dumper<double>(f);
     cout << "From vector: ";
     for(int digit: dump)
         cout << digit;
     cout << endl;
-    writeTo(&dump);
+    write_to(&dump);
     string content = read_and_print();
     cout << "From file:   " << content << endl;
 }
