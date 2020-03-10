@@ -37,7 +37,7 @@ void write_to_file(vector<int>* content) {
 string read_from_file() {
     std::string dump_str;
     std::ifstream dump_file("dump.txt");
-    while (dump_file >> dump_str);
+    dump_file >> dump_str;
     dump_file.close();
     return dump_str;
 }
