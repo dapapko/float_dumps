@@ -7,8 +7,8 @@ using namespace std;
 
 
 template<typename T>
-vector<int> dumper(T a) {
-    unsigned long long int value = *reinterpret_cast<unsigned long long int *>(&a);
+vector<int> dumper(T number) {
+    unsigned long long int value = *reinterpret_cast<unsigned long long int *>(&number);
     vector<int> dump = vector<int>();
     unsigned long long int mask = 1;
     int digit;
@@ -24,7 +24,7 @@ vector<int> dumper(T a) {
 
 
 
-void write_to(vector<int>* content) {
+void write_to_file(vector<int>* content) {
     ofstream target;
     target.open("dump.txt");
     for(int digit: *content)
@@ -34,7 +34,7 @@ void write_to(vector<int>* content) {
 }
 
 
-string read_and_print() {
+string read_from_file() {
     std::string dump_str;
     std::ifstream dump_file("dump.txt");
     while (dump_file >> dump_str);
@@ -50,7 +50,7 @@ int main() {
     for(int digit: dump)
         cout << digit;
     cout << endl;
-    write_to(&dump);
-    string content = read_and_print();
+    write_to_file(&dump);
+    string content = read_from_file();
     cout << "From file:   " << content << endl;
 }
