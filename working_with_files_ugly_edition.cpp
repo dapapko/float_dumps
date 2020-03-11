@@ -55,6 +55,8 @@ void print_from_file() {
     char* dump_from_file = read_from_file<T>();
     for(int i=0; i < sizeof(T)*8;i++)
         cout << dump_from_file[i];
+    delete[] dump_from_file();
+
 }
 
 
@@ -63,4 +65,5 @@ int main() {
     int* dump = dumper(n);
     write_array_to_file<double>(dump);
     print_from_file<double>();
+    delete[] dump;
 }
