@@ -29,9 +29,8 @@ void write_array_to_file(int array[]) {
        cout << "Writing error";
        exit(1);
     }
-    for(int i=0; i < sizeof(T)*8;i++) {
+    for(int i=0; i < sizeof(T)*8;i++) 
         out << array[i];
-    }
 }
 
 
