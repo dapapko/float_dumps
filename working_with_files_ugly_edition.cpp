@@ -59,7 +59,6 @@ void print_from_file() {
     for(int i=0; i < sizeof(T)*8;i++)
         cout << dump_from_file[i];
     delete[] dump_from_file;
-
 }
 
 
