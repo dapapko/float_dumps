@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-using nam noespace std;
+using namespace std;
 
 
 template<typename T>
