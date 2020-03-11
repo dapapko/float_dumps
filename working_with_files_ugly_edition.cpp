@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-using namespace std;
+using nam noespace std;
 
 
 template<typename T>
@@ -19,6 +19,7 @@ template<typename T>
     return dump;
 }
 
+
 template <typename T>
 void write_array_to_file(int array[]) {
     std::ofstream out;
@@ -33,6 +34,7 @@ void write_array_to_file(int array[]) {
     }
 }
 
+
 template <typename T>
 char* read_from_file(){
     char* content = new char[sizeof(T)*8];
@@ -43,19 +45,21 @@ char* read_from_file(){
         exit(1);
     }
     int i=0;
-    while(!dump.eof() && i < sizeof(T)*8)
+    while( !dump.eof() && i < sizeof(T)*8)
     {
         dump.get(content[i]);
         i++;
     }
     return content;
 }
+
+
 template <typename T>
 void print_from_file() {
     char* dump_from_file = read_from_file<T>();
     for(int i=0; i < sizeof(T)*8;i++)
         cout << dump_from_file[i];
-    delete[] dump_from_file();
+    delete[] dump_from_file;
 
 }
 
