@@ -29,9 +29,8 @@ void write_array_to_file(int array[]) {
         cout << "Writing error";
         exit(1);
     }
-    for(int i=0; i < sizeof(T)*8;i++) {
+    for(int i=0; i < sizeof(T)*8;i++)
         out << array[i];
-    }
 }
 
 
@@ -50,11 +49,9 @@ char* read_from_file(){
 
 
 template <typename T>
-void print_from_file() {
-    char* dump_from_file = read_from_file<T>();
+void print_dump(char* dump) {
     for(int i=0; i < sizeof(T)*8;i++)
-        cout << dump_from_file[i];
-    delete[] dump_from_file;
+        cout << dump[i];
 }
 
 
@@ -62,8 +59,10 @@ int main() {
     float n = 12.34;
     int* dump = dumper(n);
     write_array_to_file<float>(dump);
-    print_from_file<float>();
+    char* dump_from_file = read_from_file<float>();
+    print_dump<float>(dump_from_file);
     delete[] dump;
+    delete[] dump_from_file;
 }
 
 
