@@ -18,18 +18,16 @@ template<typename T>
     }
     return dump;
 }
-
-
 template <typename T>
 void write_array_to_file(int array[]) {
-    std::ofstream out;
+    ofstream out;
     out.open("dump.txt");
     if (!out.is_open())
     {
-       cout << "Writing error";
-       exit(1);
+        cout << "Writing error";
+        exit(1);
     }
-    for(int i=0; i < sizeof(T)*8;i++) 
+    for(int i=0; i < sizeof(T)*8;i++)
         out << array[i];
 }
 
@@ -43,29 +41,24 @@ char* read_from_file(){
         cout << "Reading error";
         exit(1);
     }
-    int i=0;
-    while( !dump.eof() && i < sizeof(T)*8)
-    {
-        dump.get(content[i]);
-        i++;
-    }
+    dump.getline(content, sizeof(T)*8);
     return content;
 }
 
 
 template <typename T>
-void print_from_file() {
-    char* dump_from_file = read_from_file<T>();
+void print_from_file(char* dump_from_file) {
     for(int i=0; i < sizeof(T)*8;i++)
         cout << dump_from_file[i];
-    delete[] dump_from_file;
 }
 
 
 int main() {
-    double n = 12.34;
+    float n = 12.34;
     int* dump = dumper(n);
-    write_array_to_file<double>(dump);
-    print_from_file<double>();
+    write_array_to_file<float>(dump);
+    char* dump_from_file = read_from_file<float>();
+    print_from_file<float>(dump_from_file);
+    delete[] dump_from_file;
     delete[] dump;
 }
