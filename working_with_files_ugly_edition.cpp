@@ -31,19 +31,21 @@ void write_array_to_file(int array[]) {
     }
     for(int i=0; i < sizeof(T)*8;i++)
         out << array[i];
+    out.close();
 }
 
 
 template <typename T>
 char* read_from_file(){
     char* content = new char[sizeof(T)*8];
-    ifstream dump("dump.txt");
-    if (!dump.is_open())
+    ifstream dump_file("dump.txt");
+    if (!dump_file.is_open())
     {
         cout << "Reading error";
         exit(1);
     }
-    dump.getline(content, sizeof(T)*8);
+    dump_file.getline(content, sizeof(T)*8);
+    dump_file.close();
     return content;
 }
 
