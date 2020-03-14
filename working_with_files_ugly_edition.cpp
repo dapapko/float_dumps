@@ -18,6 +18,7 @@ template<typename T>
     }
     return dump;
 }
+
 template <typename T>
 void write_array_to_file(int array[]) {
     ofstream out;
