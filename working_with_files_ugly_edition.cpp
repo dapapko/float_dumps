@@ -22,7 +22,7 @@ int* dumper(T a) {
 
 
 template <typename T>
-void write(int* arr) {
+void write_to_file(int* arr) {
     fstream out("file.txt", ios::out);
     if (!out.is_open()) {
         cout << "File can't be opened." << endl;
@@ -37,8 +37,8 @@ void write(int* arr) {
 template <typename T>
 void read_from_file() {
     int size = sizeof(T)*8;
-    fstream file("dump.txt");
-    if (!file.is_open()) {
+    fstream dump("dump.txt");
+    if (!dump.is_open()) {
         cout << "File can't be opened." << endl;
         exit(1);
     }
@@ -50,7 +50,7 @@ void read_from_file() {
 
 int main() {
     float d = -23.65;
-    int* dump = toDump(d);
+    int* dump = dumper(d);
     for(int i=0; i < sizeof(d)*8; i ++)
         cout << dump[i];
     cout << endl;
