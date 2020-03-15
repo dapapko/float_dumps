@@ -22,8 +22,7 @@ int* dumper(T number) {
 
 template <typename T>
 void write_array_to_file(int array[]) {
-    ofstream out;
-    out.open("dump.txt");
+    fstream out("dump.txt");
     if (!out.is_open())
     {
         cout << "Writing error";
@@ -38,7 +37,7 @@ void write_array_to_file(int array[]) {
 template <typename T>
 char* read_from_file(){
     char* content = new char[sizeof(T)*8];
-    ifstream dump_file("dump.txt");
+    fstream dump_file("dump.txt");
     if (!dump_file.is_open())
     {
         cout << "Reading error";
@@ -66,5 +65,3 @@ int main() {
     delete[] dump;
     delete[] dump_from_file;
 }
-
-
