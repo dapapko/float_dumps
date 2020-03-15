@@ -35,7 +35,7 @@ void write_array_to_file(int array[]) {
 
 
 template <typename T>
-char* read_from_file(){
+void read_from_file(){
     char* content = new char[sizeof(T)*8];
     fstream dump_file("dump.txt");
     if (!dump_file.is_open())
@@ -43,25 +43,18 @@ char* read_from_file(){
         cout << "Reading error";
         exit(1);
     }
-    dump_file.getline(content, sizeof(T)*8);
+    dump_file.getline(content, sizeof(T)*8+1), '/0';
     dump_file.close();
-    return content;
-}
-
-
-template <typename T>
-void print_dump(char* dump) {
     for(int i=0; i < sizeof(T)*8;i++)
-        cout << dump[i];
+        cout << content[i];
+    delete[] content;
 }
 
 
 int main() {
-    float n = 12.34;
+    double n = -23.65;
     int* dump = dumper(n);
-    write_array_to_file<float>(dump);
-    char* dump_from_file = read_from_file<float>();
-    print_dump<float>(dump_from_file);
+    write_array_to_file<double>(dump);
+    read_from_file<double>();
     delete[] dump;
-    delete[] dump_from_file;
 }
